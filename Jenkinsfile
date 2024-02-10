@@ -1,7 +1,7 @@
 pipeline {
    agent any
    environment {
-        scannerHome = tool "frontend"
+        scannerHome = tool "SonarScanner"
         AWS_ACCOUNT_ID="314156154970"
         AWS_DEFAULT_REGION="us-east-1"
         IMAGE_REPO_NAME="devopsodia-frontendapp"
@@ -20,7 +20,7 @@ pipeline {
         stage('Static code Analisys'){
             steps {
             script{
-               def scannerHome = tool 'frontend';
+               def scannerHome = tool 'SonarScanner';
                withSonarQubeEnv() {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
