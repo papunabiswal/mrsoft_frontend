@@ -17,12 +17,23 @@ pipeline {
                 }  
             }
         }
-        stage('Static code Analisys'){
+    //     stage('Static code Analisys'){
+    //         steps {
+    //         script{
+    //            def scannerHome = tool 'SonarScanner';
+    //            withSonarQubeEnv() {
+    //                 sh "${scannerHome}/bin/sonar-scanner"
+    //             }
+    //         }
+    //     }    
+            
+    // }
+	    stage('Static code Analisys'){
             steps {
             script{
-               def scannerHome = tool 'SonarScanner';
-               withSonarQubeEnv() {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                def mvn = tool 'maven3.9.6';
+                withSonarQubeEnv() {
+                    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=mrsoft_Frontend"
                 }
             }
         }    
