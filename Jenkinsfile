@@ -2,9 +2,9 @@ pipeline {
    agent any
    environment {
         scannerHome = tool "SonarScanner"
-        AWS_ACCOUNT_ID="314156154970"
-        AWS_DEFAULT_REGION="us-east-1"
-        IMAGE_REPO_NAME="devopsodia-frontendapp"
+        AWS_ACCOUNT_ID="547013421517"
+        AWS_DEFAULT_REGION="ap-south-1"
+        IMAGE_REPO_NAME="frontend"
         IMAGE_TAG="${env.BUILD_NUMBER}"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
    }
@@ -43,7 +43,7 @@ pipeline {
             steps {
             script {
                // sh """aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"""
-              sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 314156154970.dkr.ecr.us-east-1.amazonaws.com"
+              sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 547013421517.dkr.ecr.ap-south-1.amazonaws.com"
             }
         }
     }
