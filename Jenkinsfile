@@ -1,7 +1,7 @@
 pipeline {
    agent any
    environment {
-        scannerHome = tool "SonarScanner"
+        scannerHome = tool "mrsoft_Frontend"
         AWS_ACCOUNT_ID="314156154970"
         AWS_DEFAULT_REGION="us-east-1"
         IMAGE_REPO_NAME="devopsodia-frontendapp"
@@ -13,14 +13,14 @@ pipeline {
         stage('Git Checkout') {
             steps {
             script{
-                git branch: 'main', credentialsId: 'GitHub', url: 'https://github.com/devopsodia/devopsodia-frontendapp.git'  
+                git branch: 'dev', credentialsId: 'GitHub', url: 'https://github.com/papunabiswal/mrsoft_frontend.git'  
                 }  
             }
         }
         stage('Static code Analisys'){
             steps {
             script{
-               def scannerHome = tool 'SonarScanner';
+               def scannerHome = tool 'mrsoft_Frontend';
                withSonarQubeEnv() {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
