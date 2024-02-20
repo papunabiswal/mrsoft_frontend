@@ -4,7 +4,7 @@ pipeline {
         scannerHome = tool "sonarqube"
         AWS_ACCOUNT_ID="547013421517"
         AWS_DEFAULT_REGION="ap-south-1"
-        IMAGE_REPO_NAME="frontend"
+        IMAGE_REPO_NAME="mrsoftfrontend"
         IMAGE_TAG="${env.BUILD_NUMBER}"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
    }
@@ -28,16 +28,13 @@ pipeline {
         }    
             
     }
-    stage('Static code Analisys'){
+    stage('Logging into AWS ECR') {
             steps {
-            script{
-                def mvn = tool 'maven3.9.6';
-                withSonarQubeEnv() {
-                    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=mrsoftfront"
-                }
+            script {
+               sh """aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"""
+              // sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 547013421517.dkr.ecr.ap-south-1.amazonaws.com"
             }
-        }    
-            
+        }
     }	    
 	      
    }
