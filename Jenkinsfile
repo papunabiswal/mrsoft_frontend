@@ -28,6 +28,17 @@ pipeline {
         }    
             
     }
+    stage('Static code Analisys'){
+            steps {
+            script{
+                def mvn = tool 'maven3.9.6';
+                withSonarQubeEnv() {
+                    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=mrsoft_Frontend"
+                }
+            }
+        }    
+            
+    }	    
 	      
    }
 }
