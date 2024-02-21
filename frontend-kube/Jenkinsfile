@@ -19,7 +19,7 @@ pipeline {
                         //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                         sh "git config user.email papunabiswal3@gmail.com"
                         sh "git config user.name papunabiswal"
-                        //sh "git switch dev"
+                        sh "git switch dev"
                         sh "cat deployment.yaml"
                         sh "sed -i 's+547013421517.dkr.ecr.ap-south-1.amazonaws.com/mrsoftfrontend.*+547013421517.dkr.ecr.ap-south-1.amazonaws.com/mrsoftfrontend:${DOCKERTAG}+g' deployment.yaml"
                         sh "cat deployment.yaml"
