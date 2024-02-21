@@ -55,7 +55,7 @@ pipeline {
             steps{
             script {
                 echo "triggering Update manifest Job"
-                build job: 'frontendapp-updatek8s', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+                build job: 'Frontend-Deployment', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
             }
         }
     }
