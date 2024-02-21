@@ -51,6 +51,14 @@ pipeline {
 	     }
 	}
     }
+    stage('Trigger Update K8s') {
+            steps{
+            script {
+                echo "triggering Update manifest Job"
+                build job: 'frontendapp-updatek8s', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+            }
+        }
+    }
 	      
    }
 }
