@@ -28,7 +28,7 @@ pipeline {
     //     }    
             
     // }
-    stage('Logging into AWS ECR') {
+    	stage('Logging into AWS ECR') {
             steps {
 	      withEnv([
     		"AWS_ACCESS_KEY_ID=\$${env.AWS_ACCESS_KEY_ID}",
@@ -42,7 +42,7 @@ pipeline {
 	   }
 
         }
-    }
+       }
     stage('Building image') {
             steps{
             script {
