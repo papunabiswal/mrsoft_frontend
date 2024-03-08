@@ -1,10 +1,10 @@
 pipeline {
    agent any
    environment {
-        // scannerHome = tool "sonar-scanner"
-        AWS_ACCOUNT_ID="547013421517"
+        scannerHome = tool "sonar-scanner"
+        AWS_ACCOUNT_ID="381492085690"
         AWS_DEFAULT_REGION="ap-south-1"
-        IMAGE_REPO_NAME="demo"
+        IMAGE_REPO_NAME="frontend"
         IMAGE_TAG="${env.BUILD_NUMBER}"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
    }
@@ -17,17 +17,17 @@ pipeline {
                 }  
             }
         }
-    //     stage('Static code Analisys'){
-    //         steps {
-    //         script{
-    //            def scannerHome = tool 'sonar-scanner';
-    //            withSonarQubeEnv() {
-    //                 sh "${scannerHome}/bin/sonar-scanner"
-    //             }
-    //         }
-    //     }    
+        stage('Static code Analisys'){
+            steps {
+            script{
+               def scannerHome = tool 'sonar-scanner';
+               withSonarQubeEnv() {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }    
             
-    // }
+    }
     	stage('Logging into AWS ECR') {
             steps {
 	      script {
