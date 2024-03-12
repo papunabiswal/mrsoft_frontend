@@ -60,6 +60,14 @@ pipeline {
     //         }
     //     }
     // }
+	stage ("Deploy to K8S") {
+            steps {
+                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'Kubernetes', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                sh "kubectl apply -f eks-deploy-k8s.yaml"
+                    
+                }
+            }
+        }
 	      
    }
 }
