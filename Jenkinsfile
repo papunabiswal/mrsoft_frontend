@@ -1,7 +1,7 @@
 pipeline {
    agent any
    environment {
-        scannerHome = tool "sonar-scanner"
+        // scannerHome = tool "sonar-scanner"
         AWS_ACCOUNT_ID="381492085690"
         AWS_DEFAULT_REGION="ap-south-1"
         IMAGE_REPO_NAME="frontend"
@@ -17,17 +17,17 @@ pipeline {
                 }  
             }
         }
-        stage('Static code Analisys'){
-            steps {
-            script{
-               def scannerHome = tool 'sonar-scanner';
-               withSonarQubeEnv() {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }    
+    //     stage('Static code Analisys'){
+    //         steps {
+    //         script{
+    //            def scannerHome = tool 'sonar-scanner';
+    //            withSonarQubeEnv() {
+    //                 sh "${scannerHome}/bin/sonar-scanner"
+    //             }
+    //         }
+    //     }    
             
-    }
+    // }
     	stage('Logging into AWS ECR') {
             steps {
 	      script {
@@ -52,14 +52,14 @@ pipeline {
 	     }
 	}
     }
-    stage('Trigger Update K8s') {
-            steps{
-            script {
-                echo "triggering Update manifest Job"
-                build job: 'Frontend-Deployment', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
-            }
-        }
-    }
+    // stage('Trigger Update K8s') {
+    //         steps{
+    //         script {
+    //             echo "triggering Update manifest Job"
+    //             build job: 'Frontend-Deployment', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
+    //         }
+    //     }
+    // }
 	      
    }
 }
