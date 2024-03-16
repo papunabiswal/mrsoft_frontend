@@ -60,13 +60,20 @@ pipeline {
     //         }
     //     }
     // }
+	// stage ("Deploy to K8S") {
+ //            steps {
+ //                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'aws', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+ //                 sh "kubectl apply -f deployment.yaml"
+ //                }
+ //            }
+ //        }
 	stage ("Deploy to K8S") {
             steps {
-                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'aws', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                withAWS(credentials: 'aws', region: 'ap-south-1') {
                  sh "kubectl apply -f deployment.yaml"
                 }
             }
         }
-	      
+	
    }
 }
