@@ -4,7 +4,7 @@ pipeline {
         // scannerHome = tool "sonar-scanner"
         AWS_ACCOUNT_ID="381492085690"
         AWS_DEFAULT_REGION="ap-south-1"
-        IMAGE_REPO_NAME="demo"
+        IMAGE_REPO_NAME="dev"
         IMAGE_TAG="${env.BUILD_NUMBER}"
         REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
    }
