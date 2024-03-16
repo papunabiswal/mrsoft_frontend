@@ -14,8 +14,8 @@ spec:
       labels:
         app: frontend
     spec:
-      imagePullSecrets:    # Need to add Secret Name for Image pull from Aws ECR to Kubernetes Cluster
-      - name: aws-ecr 
+      # imagePullSecrets:    # Need to add Secret Name for Image pull from Aws ECR to Kubernetes Cluster
+      # - name: aws-ecr 
       containers:
       - name: container-frontend
         image: 381492085690.dkr.ecr.ap-south-1.amazonaws.com/dev:2
