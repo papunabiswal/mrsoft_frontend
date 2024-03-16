@@ -1,5 +1,7 @@
 pipeline {
-   agent any
+   agent {
+       label 'agent1'
+   }
    environment {
         // scannerHome = tool "sonar-scanner"
         AWS_ACCOUNT_ID="381492085690"
