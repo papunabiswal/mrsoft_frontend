@@ -1,6 +1,6 @@
 pipeline {
    agent {
-       label 'envdev'
+       label 'demo'
    }
    environment {
         // scannerHome = tool "sonar-scanner"
